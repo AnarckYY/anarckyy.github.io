@@ -1,38 +1,3 @@
-<?php
-    $msgFail = "";
-    $msgSuccess = "";
-
-    if(filter_has_var(INPUT_POST, 'submit')){
-        $name = htmlspecialchars($_POST['name']);
-        $msg = htmlspecialchars($_POST['message']);
-        $company = htmlspecialchars($_POST['company']);
-        $email = htmlspecialchars($_POST['email']);
-        $phone = htmlspecialchars($_POST['phone']);
-//        $file = $_POST['file'];
-          
-        if(!empty($name) && !empty($msg) && !empty($email) && !empty($phone)){
-            if(empty($company)){
-                $company = "Частно лице";
-            }
-            $to = "akcent_34@abv.bg";
-            $subject = "Запитване от " . $name;
-            $from = $email;
-            $body = "<h3>Имейл: " . $email . "</h3>" . "<h3>Фирма: " . $company . "</h3>" . "<h3>Телефон за връзка: " . $phone . "</h3>" . "<h3> Съобщение: " . $msg . "</h3>";
-            $headers = "MIME-version: 1.0" . "\r\n";
-            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n;";
-            mail($to, $subject, $body, $headers);
-            $msgSuccess = "Благодаря за отправеното запитване. Ще получите отговор от нас в най-кратък срок.";
-            $name = "";
-            $msg = "";
-            $company = "";
-            $email = "";
-            $phone = "";
-            $file = "";
-        }else {
-            $msgFail = "Моля попълнете всички задължителни полета";
-        }
-    }
-?>
 <!DOCTYPE html>
 <html>
   <head>
